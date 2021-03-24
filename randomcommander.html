@@ -1,0 +1,68 @@
+<head>
+    <link rel="stylesheet" href="./style.css" type="text/css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet"> 
+</head>
+<html>
+    <body style="background-color: #4B4B4B;overflow: hidden;" onload="transitionScreen()" onresize="preventColorOverlap()">
+        <div style="width: 100%;display: flex;justify-content: center;">
+            <div id="warning" class="warning" style="top: -30px;">
+                <span>Select one or more colors</span>
+            </div>
+        </div>
+        <div id="loadingCover" class="loadingCover">
+            <div class="loadingSpinner"></div>
+        </div>
+        <div class="header">
+            <div style="display: flex;justify-content: space-evenly;align-items: center;">
+                <span class="headerSpanLink">Source on Github</span> <span>Get a random Magic: The Gathering commander</span> <span class="headerSpanLink">My Resume</span>
+            </div>
+        </div>
+        <div id="colorsSection" class="page">
+            <div id="colorless-container" class="colorless">
+                <span id="colorless" onclick="colorlessButton()">
+                    <img src="./icons/C.svg" draggable="false">
+                </span>
+            </div>
+            <div id="symbols" class="symbols">
+                <span id="0" onclick="select(0)">
+                    <img src="./icons/W.svg" draggable="false">
+                </span>
+                <span id="1" onclick="select(1)">
+                    <img src="./icons/U.svg" draggable="false">
+                </span>
+                <span id="2" onclick="select(2)">
+                    <img src="./icons/B.svg" draggable="false">
+                </span>
+                <span id="3" onclick="select(3)">
+                    <img src="./icons/R.svg" draggable="false">
+                </span>
+                <span id="4" onclick="select(4)">
+                    <img src="./icons/G.svg" draggable="false">
+                </span>
+            </div>
+
+            <p id="name" class="nameText">Choose one or more colors</p>
+            <div class="commanderWrapper">
+                <div class="inputWrapper">
+                    <span id="plus" class="inputSpinner" onmouseenter="clearTimeout(spinnerTimer)" onmouseleave="spinnerTimer = setTimeout(hideSpinners, 3000)" onclick="changeNumber('up')">+</span>
+                    <input type="number" onclick="moveSpinners()" onmouseenter="clearTimeout(spinnerTimer)" onmouseleave="spinnerTimer = setTimeout(hideSpinners, 3000)" onchange="if(value == 1){document.getElementById('pluralToggle').textContent='Commander&nbsp;'}else{document.getElementById('pluralToggle').textContent='Commanders'}" id="number" class="commanderInput" value="3" min="1" max="6" readonly>
+                    <span id="minus" class="inputSpinner" style="font-size: 30px;" onmouseenter="clearTimeout(spinnerTimer)" onmouseleave="spinnerTimer = setTimeout(hideSpinners, 3000)" onclick="changeNumber('down')">-</span>
+                </div>
+                <button id="commanderButton" class="commanderButton" onclick="getCommanders(selection)">Get &nbsp;&nbsp;&nbsp; random <span id="pluralToggle">Commanders</span></button>
+            </div>
+            <button id="randomButton" class="commanderButton" onclick="randomColors()">Choose random colors for me</button>
+
+        </div>
+        <div id="cardWrapper" style="position: fixed;width: 100%;height: 100%;top: 200%;transition: top 1s ease-in-out;overflow-y: scroll;">
+            <div style="display: flex;justify-content: center;width: 100%;">
+                <button class="commanderButton" style="margin-top: 7%;" onclick="transitionScreen();document.getElementById('commanderButton').disabled = false;">Back to color select</button>
+            </div>
+            <div style="z-index: 99;" id="cardFlex" class="cards">
+                <!-- Cards go here -->
+            </div>
+        </div>
+        <script src="./script.js"></script>
+        <!-- <script src="./jquery-3.6.0.js"></script> -->
+    </body>
+</html>
