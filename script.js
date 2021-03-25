@@ -369,48 +369,50 @@ function getCommanders() {
 }
         
 async function grabCard(query) { //get the cards from scryfall
+
     const response = await fetch(query);
     const result = await response.json();
-    
+
     return result;
 }
 
 function populateCards(numOfCards, query) {
     grabCard(query).then(
-        function(cards) {
-            let numOfCardsFromScryfall = cards.total_cards;
-            let foundCommanders = new Array;
-            // console.log(cards);
+            function(cards) {
+                let numOfCardsFromScryfall = cards.total_cards;
+                let foundCommanders = new Array;
+                console.log(cards);
 
-            if (numOfCardsFromScryfall < numOfCards) {
-                console.log(`num of cards from scryfall less than number entered, setting number to ${numOfCardsFromScryfall}`);
-                numOfCards = numOfCardsFromScryfall;
-            }
-
-            while(numOfCards != 0) {
-                let randomNumber = Math.floor(Math.random() * numOfCardsFromScryfall);
-                let commander = cards.data[randomNumber];
-                if (!foundCommanders.includes(commander.id)) {
-                    // console.log(commander);
-                    if (commander.hasOwnProperty('card_faces')) {
-                        if (commander.layout == 'flip') { //Card is two in one from kamigawa, should be rotated around on hover
-                            createNewCardDiv([commander.image_uris.normal], commander.related_uris.edhrec, commander.name, false, true);
-                        }
-                        else { //Card is double sided, should flip over when hovered
-                            createNewCardDiv([commander.card_faces[0].image_uris.normal, commander.card_faces[1].image_uris.normal], commander.related_uris.edhrec, commander.name, true, false);
-                        }
-                    }
-                    else { //Normal card
-                        createNewCardDiv([commander.image_uris.normal], commander.related_uris.edhrec, commander.name);
-                    }
-                    foundCommanders.push(commander.id);
-                    numOfCards--;
+                if (numOfCardsFromScryfall < numOfCards) {
+                    console.log(`num of cards from scryfall less than number entered, setting number to ${numOfCardsFromScryfall}`);
+                    numOfCards = numOfCardsFromScryfall;
                 }
+
+                while(numOfCards != 0) {
+                    let randomNumber = Math.floor(Math.random() * numOfCardsFromScryfall);
+                    let commander = cards.data[randomNumber];
+                    if (!foundCommanders.includes(commander.id)) {
+                        // console.log(commander);
+                        if (commander.hasOwnProperty('card_faces')) {
+                            if (commander.layout == 'flip') { //Card is two in one from kamigawa, should be rotated around on hover
+                                createNewCardDiv([commander.image_uris.normal], commander.related_uris.edhrec, commander.name, false, true);
+                            }
+                            else { //Card is double sided, should flip over when hovered
+                                createNewCardDiv([commander.card_faces[0].image_uris.normal, commander.card_faces[1].image_uris.normal], commander.related_uris.edhrec, commander.name, true, false);
+                            }
+                        }
+                        else { //Normal card
+                            createNewCardDiv([commander.image_uris.normal], commander.related_uris.edhrec, commander.name);
+                        }
+                        foundCommanders.push(commander.id);
+                        numOfCards--;
+                    }
+                }
+                document.getElementById('loadingCover').style.display = 'none';
+                transitionScreen(); //Move the colors and card sections up
             }
-            document.getElementById('loadingCover').style.display = 'none';
-            transitionScreen(); //Move the colors and card sections up
-        }
-    );
+        
+        ).catch(function() {document.getElementById('loadingCover').style.display = 'none';document.getElementById('commanderButton').disabled=false;console.log('Something went wrong');alert("There was an error, Scryfall is most likely offline. Check their twitter to verify https://twitter.com/scryfall");});
 }
 
 function createNewCardDiv(images, link, name, isDouble = false, isFlip = false) {
@@ -464,6 +466,7 @@ function createNewCardDiv(images, link, name, isDouble = false, isFlip = false) 
         cardFrame.appendChild(cardLink);
     
         document.getElementById("cardFlex").appendChild(cardFrame);
+        document.getElementsByTagName('div')
     }
 
 }
@@ -472,15 +475,19 @@ function transitionScreen() {
     let colorScreen = document.getElementById('colorsSection');
     let commanderScreen = document.getElementById('cardWrapper');
 
-    if (colorScreen.style.top == '0px') {
-        colorScreen.style.top = '-100%';
-        commanderScreen.style.top = '0';
+    if (onColorScreen) {
+        // colorScreen.style.top = '-100%';
+        colorScreen.style.transform = "translateY(-100%)"
+        // commanderScreen.style.top = '0';
+        commanderScreen.style.transform = 'translateY(-90%)';
         onColorScreen = false;
     }
     else {
-        commanderScreen.style.top = '200%';
-        colorScreen.style.top = '0';
-        onColorScreen = false;
+        // commanderScreen.style.top = '200%';
+        commanderScreen.style.transform = 'translateY(100%)';
+        // colorScreen.style.top = '0';
+        colorScreen.style.transform = "translateY(0%)"
+        onColorScreen = true;
     }
 }
 
