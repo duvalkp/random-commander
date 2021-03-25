@@ -1,2 +1,2 @@
 # random-commander
-Simple client side webpage that retrieves a random commander from scryfall.com based on the colors chosen
+Simple webpage that retrieves a random commander from scryfall.com based on the colors chosen. Cards are requested completely client-side with a Javascript fetch. 
