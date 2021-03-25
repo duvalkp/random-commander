@@ -69,6 +69,7 @@ function randomColors() {
 
 }
 
+//Changes the multi color name text display
 function setGradient(combination) {
     let name = document.getElementById('name');
     let comboArray = combination.split('');
@@ -102,6 +103,7 @@ function setGradient(combination) {
 
 }
 
+//Adds to the number input
 function changeNumber(type) {
     let numberBox = document.getElementById('number');
     let current = Number(numberBox.value);
@@ -316,6 +318,7 @@ function updateColor() {
 
 }
 
+//Pop the plus and minus spans from behind the commander counter
 function moveSpinners() {
     let plus = document.getElementById('plus');
     let minus = document.getElementById('minus');
@@ -326,6 +329,7 @@ function moveSpinners() {
     minus.style.zIndex = '3';
 }
 
+//Hide the spans behind it again
 function hideSpinners() {
     let plus = document.getElementById('plus');
     let minus = document.getElementById('minus');
@@ -344,8 +348,8 @@ function getCommanders() {
         // setTimeout(showWarning, 4000);
     }
     else {
-        document.getElementById('loadingCover').style.display = 'flex';
-        document.getElementById('commanderButton').disabled = true;
+        document.getElementById('loadingCover').style.display = 'flex'; //show loading symbol
+        document.getElementById('commanderButton').disabled = true; //disable the button so you can't hit it a bunch of times in a row
         let colors = "";
         let numOfCards = document.getElementById('number').value;
         document.getElementById("cardFlex").innerHTML = '';
@@ -364,7 +368,7 @@ function getCommanders() {
     }
 }
         
-async function grabCard(query) {
+async function grabCard(query) { //get the cards from scryfall
     const response = await fetch(query);
     const result = await response.json();
     
@@ -404,7 +408,7 @@ function populateCards(numOfCards, query) {
                 }
             }
             document.getElementById('loadingCover').style.display = 'none';
-            transitionScreen();
+            transitionScreen(); //Move the colors and card sections up
         }
     );
 }
@@ -468,17 +472,6 @@ function transitionScreen() {
     let colorScreen = document.getElementById('colorsSection');
     let commanderScreen = document.getElementById('cardWrapper');
 
-    // if (onColorScreen) {
-    //     colorScreen.style.transform = 'translateY(-100%)';
-    //     commanderScreen.style.transform = 'translateY(0)';
-    //     onColorScreen = false;
-    // }
-    // else {
-    //     colorScreen.style.transform = 'translateY(0)';
-    //     commanderScreen.style.transform = 'translateY(200%)';
-    // }
-    //colorScreen.style.top == '0px'
-
     if (colorScreen.style.top == '0px') {
         colorScreen.style.top = '-100%';
         commanderScreen.style.top = '0';
@@ -493,13 +486,6 @@ function transitionScreen() {
 
 function showWarning() {
     document.getElementById('name').style.color = '#b30000';
-    // console.log('warning func')
-    // let warning = document.getElementById('warning');
-    // console.log(warning.style.top)
-    // if (warning.style.top == '-30px') {
-    //     warning.style.top = '10px';
-    // }
-    // else {warning.style.top = '-30px';console.log('here')}
 }
 
 function preventColorOverlap() {
