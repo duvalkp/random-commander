@@ -145,6 +145,9 @@ input[type=number] {
     z-index: 2;
     font-family: 'Roboto', sans-serif;
     transition: color 0.2s;
+    background-clip: text;
+    -moz-background-clip: text;
+    -webkit-background-clip: text;
 }
 
 .commanderWrapper {
