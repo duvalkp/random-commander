@@ -75,7 +75,7 @@ input[type=number] {
 .header span {
     color: black;
     font-family: 'Roboto', sans-serif;
-    font-size: 24px;
+    font-size: 14px;
     margin-right: 10px;
     padding-right: 10px;
 }
@@ -93,9 +93,8 @@ input[type=number] {
     text-decoration: none;
 }
 
-
 .colorless {
-    margin-top: 8%;
+    margin-top: 5%;
     cursor: pointer;
     user-select: none;
     -moz-user-select: none;
@@ -242,6 +241,7 @@ input[type=number] {
     margin-top: 20px;
     margin-left: 100px;
     margin-right: 100px;
+    margin-bottom: 25px;
 }
 
 .cardholder {

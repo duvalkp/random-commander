@@ -2,24 +2,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Random commander</title>
-    <link rel="stylesheet" href="./style.css" type="text/css">
+    <link rel="stylesheet" href="./style.css" type="text/css" media="screen">
+    <link rel="stylesheet" href='./mobile.css' type="text/css" media='screen and (min-width: 200px) and (max-width: 400px)'/>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet"> 
 </head>
 <html>
-    <body style="background-color: #4B4B4B;" style="overflow-y: visible;"> <!-- onload="transitionScreen()" -->
-        <div style="width: 100%;display: flex;justify-content: center;">
-            <div id="warning" class="warning" style="top: -30px;">
-                <span>Select one or more colors</span>
-            </div>
-        </div>
+    <body style="background-color: #4B4B4B;" style="overflow-y: visible;">
         <div id="loadingCover" class="loadingCover">
             <div class="loadingSpinner"></div>
-        </div>
-        <div class="header">
-            <div style="display: flex;justify-content: space-evenly;align-items: center;">
-                <a href="https://github.com/duvalkp/random-commander"><span class="headerSpanLink" style="border-right: 2px solid #4e4e4e;">Source on Github</span></a> <span style="border-right: 2px solid #4e4e4e;">Get a random Magic: The Gathering commander</span> <a href="./files/Duvalresume.pdf" download="test"><span class="headerSpanLink">My Resume</span></a>
-            </div>
         </div>
         <div id="colorsSection" class="page">
             <div id="colorless-container" class="colorless">
@@ -57,7 +48,7 @@
             <button id="randomButton" class="commanderButton" onclick="randomColors()">Choose random colors for me</button>
 
         </div>
-        <div id="cardWrapper" style="position: fixed;width: 100%;height: 100%;transform: translateY(100%);transition: transform 1s ease-in-out;overflow-y: scroll;">
+        <div id="cardWrapper" style="position: fixed;width: 100%;height: 102%;margin-top: 10%;transform: translateY(100vh);transition: transform 1s ease-in-out;overflow-y: scroll;">
             <div style="display: flex;justify-content: center;width: 100%;">
                 <button class="commanderButton" style="margin-top: 5%;" onclick="transitionScreen();document.getElementById('commanderButton').disabled = false;">Back to color select</button>
             </div>

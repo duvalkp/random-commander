@@ -82,21 +82,25 @@ function setGradient(combination) {
 
     if (colorPos.length == 2) {
         name.style.backgroundImage = `linear-gradient(60deg,${harsherColors[colorPos[0]]} 50%,${harsherColors[colorPos[1]]} 60%)`;
+        name.style.backgroundImage = `-webkit-linear-gradient(60deg,${harsherColors[colorPos[0]]} 50%,${harsherColors[colorPos[1]]} 60%)`;
         name.style.backgroundClip = `text`;
         name.style.color = `transparent`;
     }
     else if (colorPos.length == 3) {
         name.style.backgroundImage = `linear-gradient(to right,${harsherColors[colorPos[0]]} 30%,${harsherColors[colorPos[1]]},${harsherColors[colorPos[2]]})`;
+        name.style.backgroundImage = `-webkit-linear-gradient(to right,${harsherColors[colorPos[0]]} 30%,${harsherColors[colorPos[1]]},${harsherColors[colorPos[2]]})`;
         name.style.backgroundClip = `text`;
         name.style.color = `transparent`;
     }
     else if (colorPos.length == 4) {
         name.style.backgroundImage = `linear-gradient(to right,${harsherColors[colorPos[0]]} 30%,${harsherColors[colorPos[1]]},${harsherColors[colorPos[2]]},${harsherColors[colorPos[3]]})`;
+        name.style.backgroundImage = `-webkit-linear-gradient(to right,${harsherColors[colorPos[0]]} 30%,${harsherColors[colorPos[1]]},${harsherColors[colorPos[2]]},${harsherColors[colorPos[3]]})`;
         name.style.backgroundClip = `text`;
         name.style.color = `transparent`;
     }
     else {
         name.style.backgroundImage = `linear-gradient(to right,${harsherColors[colorPos[0]]},${harsherColors[colorPos[1]]} 30%,${harsherColors[colorPos[2]]} 70%,${harsherColors[colorPos[3]]} 80%,${harsherColors[colorPos[4]]})`;
+        name.style.backgroundImage = `-webkit-linear-gradient(to right,${harsherColors[colorPos[0]]},${harsherColors[colorPos[1]]} 30%,${harsherColors[colorPos[2]]} 70%,${harsherColors[colorPos[3]]} 80%,${harsherColors[colorPos[4]]})`;
         name.style.backgroundClip = `text`;
         name.style.color = `transparent`;
     }
@@ -477,16 +481,16 @@ function transitionScreen() {
 
     if (onColorScreen) {
         // colorScreen.style.top = '-100%';
-        colorScreen.style.transform = "translateY(-100%)"
+        colorScreen.style.transform = "translateY(-100vh)"
         // commanderScreen.style.top = '0';
-        commanderScreen.style.transform = 'translateY(-90%)';
+        commanderScreen.style.transform = 'translateY(-95vh)';
         onColorScreen = false;
     }
     else {
         // commanderScreen.style.top = '200%';
-        commanderScreen.style.transform = 'translateY(100%)';
+        commanderScreen.style.transform = 'translateY(100vh)';
         // colorScreen.style.top = '0';
-        colorScreen.style.transform = "translateY(0%)"
+        colorScreen.style.transform = "translateY(0vh)"
         onColorScreen = true;
     }
 }
